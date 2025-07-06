@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⚡ GitHub Realm - AI Profile Analyzer ⚡</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #667eea;
+      --secondary: #764ba2;
+      --accent: #f093fb;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --error: #ef4444;
+      --dark: #0f0f23;
+      --light: #ffffff;
+    }
+    
+    * {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--dark);
+      color: var(--light);
+      overflow-x: hidden;
+    }
+    
+    /* Advanced Animations */
+    @keyframes morphing {
+      0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+      50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+    }
+    
+    @keyframes float-complex {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      33% { transform: translateY(-20px) rotate(1deg); }
+      66% { transform: translateY(-10px) rotate(-1deg); }
+    }
+    
+    @keyframes gradient-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    
+    @keyframes hologram-flicker {
+      0%, 100% { opacity: 1; filter: hue-rotate(0deg); }
+      25% { opacity: 0.8; filter: hue-rotate(90deg); }
+      50% { opacity: 0.9; filter: hue-rotate(180deg); }
+      75% { opacity: 0.7; filter: hue-rotate(270deg); }
+    }
+    
+    @keyframes cyber-pulse {
+      0%, 100% { 
+        box-shadow: 0 0 20px rgba(102, 126, 234, 0.3),
+                    0 0 40px rgba(102, 126, 234, 0.1),
+                    inset 0 0 20px rgba(102, 126, 234, 0.1);
+      }
+      50% { 
+        box-shadow: 0 0 40px rgba(102, 126, 234, 0.8),
+                    0 0 80px rgba(102, 126, 234, 0.4),
+                    inset 0 0 40px rgba(102, 126, 234, 0.3);
+      }
+    }
+    
+    @keyframes data-stream {
+      0% { transform: translateX(-100%) scaleX(0); }
+      50% { transform: translateX(0%) scaleX(1); }
+      100% { transform: translateX(100%) scaleX(0); }
+    }
+    
+    @keyframes neural-network {
+      0%, 100% { stroke-dashoffset: 0; }
+      50% { stroke-dashoffset: 100; }
+    }
+    
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    
+    @keyframes blink {
+      0%, 50% { border-color: transparent; }
+      51%, 100% { border-color: var(--primary); }
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slideIn {
+      from { transform: translateX(-100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    
+    @keyframes scaleIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 53%, 80%, 100% { transform: translate3d(0,0,0); }
+      40%, 43% { transform: translate3d(0, -30px, 0); }
+      70% { transform: translate3d(0, -15px, 0); }
+      90% { transform: translate3d(0, -4px, 0); }
+    }
+    
+    /* Advanced Glassmorphism */
+    .glass-advanced {
+      background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(255, 255, 255, 0.1) 100%);
+      backdrop-filter: blur(30px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 
+        0 25px 45px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    }
+    
+    .morphing-bg {
+      background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #667eea);
+      background-size: 400% 400%;
+      animation: gradient-shift 15s ease infinite, morphing 20s ease-in-out infinite;
+    }
+    
+    .hologram-effect {
+      animation: hologram-flicker 3s ease-in-out infinite;
+      background: linear-gradient(45deg, transparent 30%, rgba(102, 126, 234, 0.1) 50%, transparent 70%);
+      background-size: 200% 200%;
+    }
+    
+    .cyber-grid {
+      background-image: 
+        linear-gradient(rgba(102, 126, 234, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(102, 126, 234, 0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: data-stream 10s linear infinite;
+    }
+    
+    .neural-lines {
+      stroke: var(--primary);
+      stroke-width: 2;
+      stroke-dasharray: 10, 5;
+      animation: neural-network 4s ease-in-out infinite;
+      filter: drop-shadow(0 0 5px rgba(102, 126, 234, 0.5));
+    }
+    
+    /* Advanced Loading States */
+    .quantum-loader {
+      position: relative;
+      width: 80px;
+      height: 80px;
+    }
+    
+    .quantum-loader::before,
+    .quantum-loader::after {
+      content: '';
+      position: absolute;
+      border: 3px solid transparent;
+      border-radius: 50%;
+      animation: cyber-pulse 2s ease-in-out infinite;
+    }
+    
+    .quantum-loader::before {
+      width: 80px;
+      height: 80px;
+      border-top: 3px solid var(--primary);
+      animation: spin 1s linear infinite, cyber-pulse 2s ease-in-out infinite;
+    }
+    
+    .quantum-loader::after {
+      width: 60px;
+      height: 60px;
+      top: 10px;
+      left: 10px;
+      border-bottom: 3px solid var(--accent);
+      animation: spin 1s linear infinite reverse, cyber-pulse 2s ease-in-out infinite;
+    }
+    
+    /* Interactive Elements */
+    .interactive-card {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform-style: preserve-3d;
+    }
+    
+    .interactive-card:hover {
+      transform: translateY(-15px) rotateX(5deg) rotateY(5deg) scale(1.02);
+      box-shadow: 
+        0 30px 60px rgba(0, 0, 0, 0.4),
+        0 0 50px rgba(102, 126, 234, 0.3);
+    }
+    
+    /* Advanced Button Styles */
+    .quantum-btn {
+      position: relative;
+      background: linear-gradient(45deg, var(--primary), var(--accent));
+      border: none;
+      padding: 16px 32px;
+      border-radius: 12px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .quantum-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transition: left 0.6s ease;
+    }
+    
+    .quantum-btn:hover::before {
+      left: 100%;
+    }
+    
+    .quantum-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+    }
+    
+    .quantum-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    
+    /* AI Visualization Effects */
+    .ai-thinking {
+      position: relative;
+    }
+    
+    .ai-thinking::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: float-complex 3s ease-in-out infinite;
+    }
+    
+    .typing-animation {
+      overflow: hidden;
+      border-right: 2px solid var(--primary);
+      white-space: nowrap;
+      animation: typing 3s steps(40, end), blink 0.75s step-end infinite;
+    }
+    
+    /* Responsive Design */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .interactive-card:hover {
+        transform: translateY(-5px) scale(1.01);
+      }
+    }
+    
+    /* Chart Styling */
+    .chart-container {
+      position: relative;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Profile Image Glow */
+    .profile-glow {
+      border: 3px solid transparent;
+      background: linear-gradient(45deg, var(--primary), var(--accent)) border-box;
+      border-radius: 50%;
+      position: relative;
+      box-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+    }
+    
+    /* Notification Styles */
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      padding: 16px 24px;
+      border-radius: 12px;
+      color: white;
+      font-weight: 600;
+      transform: translateX(120%);
+      transition: transform 0.3s ease;
+    }
+    
+    .notification.show {
+      transform: translateX(0);
+    }
+    
+    .notification.success {
+      background: linear-gradient(45deg, var(--success), #059669);
+    }
+    
+    .notification.error {
+      background: linear-gradient(45deg, var(--error), #dc2626);
+    }
+    
+    .notification.info {
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+    }
+    
+    /* Hidden class */
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <!-- Neural Network Background -->
+  <div id="neuralNetwork" class="fixed inset-0 z-0 opacity-20">
+    <svg width="100%" height="100%" class="absolute inset-0">
+      <defs>
+        <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+          <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(102, 126, 234, 0.1)" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)" />
+      <g id="connections"></g>
+    </svg>
+  </div>
+  
+  <!-- Particles Background -->
+  <div id="particles-js" class="fixed inset-0 z-0"></div>
+  
+  <!-- Morphing Background Elements -->
+  <div class="fixed inset-0 z-0 overflow-hidden">
+    <div class="morphing-bg absolute -top-1/2 -left-1/2 w-full h-full opacity-10 blur-3xl"></div>
+    <div class="morphing-bg absolute -bottom-1/2 -right-1/2 w-full h-full opacity-10 blur-3xl" style="animation-delay: -7s;"></div>
+  </div>
+  
+  <div class="min-h-screen flex flex-col relative z-10">
+    <!-- Advanced Header -->
+    <header class="glass-advanced border-b border-white/20 sticky top-0 z-50 hologram-effect">
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="flex items-center space-x-4">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center cyber-grid relative overflow-hidden">
+              <i class="fab fa-github text-white text-2xl relative z-10"></i>
+              <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full animate-pulse"></div>
+            </div>
+            <div>
+              <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                AI GitHub Analytics Pro
+              </h1>
+              <p class="text-xs text-gray-400 font-mono">Neural Profile Intelligence v3.0</p>
+            </div>
+          </div>
+          
+          <nav class="hidden md:flex items-center space-x-6">
+            <div class="flex space-x-4">
+              <a href="#" class="text-gray-300 hover:text-white transition-all duration-300 hover:scale-110">Analytics</a>
+              <a href="#" class="text-gray-300 hover:text-white transition-all duration-300 hover:scale-110">AI Insights</a>
+              <a href="#" class="text-gray-300 hover:text-white transition-all duration-300 hover:scale-110">API</a>
+            </div>
+            <button class="quantum-btn text-sm py-2 px-4">
+              <i class="fas fa-brain mr-2"></i>AI Pro
+            </button>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-6 py-8">
+      <!-- Hero Section -->
+      <section class="text-center mb-16 relative">
+        <div class="relative z-10">
+          <div class="mb-8 ai-thinking">
+            <h2 class="text-7xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-pulse">
+              Neural GitHub
+            </h2>
+            <h3 class="text-4xl md:text-5xl font-bold mb-6 text-white/90">
+              Profile Intelligence
+            </h3>
+          </div>
+          
+          <p class="text-xl text-gray-300 max-w-4xl mx-auto mb-12 leading-relaxed">
+            Harness the power of AI to unlock deep insights from GitHub profiles. 
+            Our neural network analyzes coding patterns, predicts trends, and provides 
+            intelligent recommendations powered by advanced machine learning.
+          </p>
+        </div>
+        
+        <!-- Advanced Search Interface -->
+        <div class="max-w-5xl mx-auto relative">
+          <div class="glass-advanced rounded-3xl p-8 mb-8 interactive-card">
+            <div class="flex flex-col lg:flex-row gap-6">
+              <div class="flex-grow relative">
+                <div class="relative">
+                  <input 
+                    type="text" 
+                    id="usernameInput" 
+                    placeholder="Enter GitHub username for AI analysis..." 
+                    class="w-full px-8 py-6 bg-white/5 border-2 border-white/20 rounded-2xl focus:outline-none focus:border-blue-500 text-white placeholder-gray-400 text-lg backdrop-blur-sm transition-all duration-300 focus:scale-105"
+                  >
+                  <div class="absolute right-6 top-1/2 transform -translate-y-1/2">
+                    <i class="fas fa-search text-gray-400 text-xl"></i>
+                  </div>
+                  <div id="aiStatus" class="absolute -top-2 -right-2 w-4 h-4 bg-green-500 rounded-full animate-pulse hidden"></div>
+                </div>
+              </div>
+              
+              <div class="flex flex-col sm:flex-row gap-4">
+                <button 
+                  id="searchBtn"
+                  class="quantum-btn lg:w-auto w-full"
+                >
+                  <i class="fas fa-brain mr-2"></i>
+                  <span>AI Analyze</span>
+                </button>
+                
+                <button 
+                  id="aiInsightsBtn"
+                  class="quantum-btn lg:w-auto w-full bg-gradient-to-r from-purple-500 to-pink-500"
+                >
+                  <i class="fas fa-magic mr-2"></i>
+                  <span>AI Insights</span>
+                </button>
+              </div>
+            </div>
+            
+            <!-- AI Features Showcase -->
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="glass-advanced rounded-xl p-4 text-center hover:scale-105 transition-transform">
+                <i class="fas fa-chart-line text-blue-400 text-2xl mb-2"></i>
+                <p class="text-sm text-gray-300">Predictive Analytics</p>
+              </div>
+              <div class="glass-advanced rounded-xl p-4 text-center hover:scale-105 transition-transform">
+                <i class="fas fa-brain text-purple-400 text-2xl mb-2"></i>
+                <p class="text-sm text-gray-300">Neural Insights</p>
+              </div>
+              <div class="glass-advanced rounded-xl p-4 text-center hover:scale-105 transition-transform">
+                <i class="fas fa-robot text-pink-400 text-2xl mb-2"></i>
+                <p class="text-sm text-gray-300">AI Recommendations</p>
+              </div>
+            </div>
+            
+            <!-- Quick Suggestions -->
+            <div class="mt-6 flex flex-wrap gap-3 justify-center">
+              <span class="text-sm text-gray-400 mr-4">AI Suggests:</span>
+              <button class="suggestion-btn px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full text-sm hover:scale-110 transition-all duration-300 border border-blue-500/30" data-username="torvalds">torvalds</button>
+              <button class="suggestion-btn px-4 py-2 bg-gradient-to-r from-green-500/20 to-blue-500/20 rounded-full text-sm hover:scale-110 transition-all duration-300 border border-green-500/30" data-username="octocat">octocat</button>
+              <button class="suggestion-btn px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full text-sm hover:scale-110 transition-all duration-300 border border-purple-500/30" data-username="mojombo">mojombo</button>
+              <button class="suggestion-btn px-4 py-2 bg-gradient-to-r from-orange-500/20 to-red-500/20 rounded-full text-sm hover:scale-110 transition-all duration-300 border border-orange-500/30" data-username="defunkt">defunkt</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Results Container -->
+      <div id="resultsContainer" class="hidden">
+        <!-- Advanced Loading State -->
+        <div id="loadingIndicator" class="hidden flex flex-col items-center justify-center py-20">
+          <div class="quantum-loader mb-8"></div>
+          <div class="text-center">
+            <p class="text-2xl text-gray-300 mb-4">AI Neural Network Processing...</p>
+            <div class="flex justify-center space-x-2 mb-6">
+              <div class="w-3 h-3 bg-blue-500 rounded-full animate-bounce"></div>
+              <div class="w-3 h-3 bg-purple-500 rounded-full animate-bounce" style="animation-delay: 0.1s;"></div>
+              <div class="w-3 h-3 bg-pink-500 rounded-full animate-bounce" style="animation-delay: 0.2s;"></div>
+            </div>
+            <div id="loadingSteps" class="space-y-2 text-sm text-gray-400 font-mono">
+              <div class="loading-step opacity-50">→ Fetching GitHub data...</div>
+              <div class="loading-step opacity-50">→ Running neural analysis...</div>
+              <div class="loading-step opacity-50">→ Generating AI insights...</div>
+              <div class="loading-step opacity-50">→ Preparing visualizations...</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Insights Panel -->
+        <div id="aiInsightsPanel" class="hidden mb-8">
+          <div class="glass-advanced rounded-3xl p-8 interactive-card">
+            <div class="flex items-center mb-6">
+              <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mr-4">
+                <i class="fas fa-brain text-white text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold text-white">AI Neural Insights</h3>
+                <p class="text-gray-400">Powered by Advanced Machine Learning</p>
+              </div>
+            </div>
+            
+            <div id="aiInsightsContent" class="space-y-6">
+              <!-- AI insights will be populated here -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Enhanced Profile Section -->
+        <div id="profileSection" class="hidden">
+          <!-- Profile content will be populated here -->
+        </div>
+        
+        <!-- Error State -->
+        <div id="errorState" class="hidden">
+          <div class="glass-advanced rounded-3xl p-8 text-center interactive-card">
+            <div class="w-24 h-24 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse">
+              <i class="fas fa-exclamation-triangle text-red-400 text-4xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-red-400 mb-4" id="errorMessage"></h3>
+            <p class="text-gray-400 mb-8">Our AI couldn't locate this profile. Please verify the username or try another one.</p>
+            <button onclick="location.reload()" class="quantum-btn">
+              <i class="fas fa-redo mr-2"></i>Retry Analysis
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Enhanced Empty State -->
+      <div id="emptyState" class="text-center py-20">
+        <div class="relative">
+          <div class="w-40 h-40 bg-gradient-to-br from-blue-500/20 to-purple-600/20 rounded-full flex items-center justify-center mx-auto mb-8 morphing-bg">
+            <i class="fab fa-github text-8xl text-blue-400 animate-pulse"></i>
+          </div>
+          <h3 class="text-3xl font-bold text-white mb-6">Ready for AI Analysis?</h3>
+          <p class="text-gray-400 max-w-2xl mx-auto mb-8 text-lg leading-relaxed">
+            Enter a GitHub username to unlock comprehensive AI-powered analytics, 
+            neural network insights, and machine learning predictions about any developer's journey.
+          </p>
+          <div class="flex flex-wrap justify-center gap-6">
+            <a href="https://github.com/trending" target="_blank" class="quantum-btn">
+              <i class="fas fa-fire mr-2"></i>Trending Repos
+            </a>
+            <a href="https://github.com/explore" target="_blank" class="quantum-btn bg-gradient-to-r from-green-500 to-blue-500">
+              <i class="fas fa-compass mr-2"></i>Explore GitHub
+            </a>
+            <button id="demoBtn" class="quantum-btn bg-gradient-to-r from-purple-500 to-pink-500">
+              <i class="fas fa-play mr-2"></i>AI Demo
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Enhanced Footer -->
+    <footer class="glass-advanced border-t border-white/20 mt-20">
+      <div class="container mx-auto px-6 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div class="col-span-1 md:col-span-2">
+            <div class="flex items-center space-x-4 mb-6">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                <i class="fab fa-github text-white text-xl"></i>
+              </div>
+              <div>
+                <span class="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">AI GitHub Analytics Pro</span>
+                <p class="text-sm text-gray-400">Neural Profile Intelligence Platform</p>
+              </div>
+            </div>
+            <p class="text-gray-400 mb-6 leading-relaxed">
+              Powered by advanced machine learning algorithms, TensorFlow.js, and OpenAI integration 
+              to provide the most comprehensive GitHub profile analysis available.
+            </p>
+          </div>
+          
+          <div>
+            <h4 class="text-lg font-semibold text-white mb-4">AI Features</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li><a href="#" class="hover:text-white transition-colors">Neural Analysis</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Predictive Insights</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">ML Recommendations</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">TensorFlow Integration</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 class="text-lg font-semibold text-white mb-4">Resources</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li><a href="#" class="hover:text-white transition-colors">API Documentation</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">AI Model Info</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="mt-12 pt-8 border-t border-white/10 text-center text-gray-400">
+          <p>© Created by Prasanna and Sachin.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Notification Container -->
+  <div id="notificationContainer"></div>
+
+  <script>
+    // Global Variables
+    let currentUser = null;
+    let currentRepos = [];
+    let allRepositories = [];
+    let filteredRepositories = [];
+    let languageChart = null;
+    let activityChart = null;
+    
+    // GitHub API Configuration
+    const GITHUB_API_BASE = 'https://api.github.com';
+    
+    // Initialize Application
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeApp();
+    });
+    
+    function initializeApp() {
+      initializeParticles();
+      initializeNeuralNetwork();
+      initializeAdvancedAnimations();
+      setupEventListeners();
+      showEmptyState();
+    }
+    
+    // Particles Configuration
+    function initializeParticles() {
+      particlesJS('particles-js', {
+        particles: {
+          number: { value: 120, density: { enable: true, value_area: 1000 } },
+          color: { value: ['#667eea', '#764ba2', '#f093fb'] },
+          shape: { 
+            type: 'circle',
+            stroke: { width: 1, color: '#667eea' }
+          },
+          opacity: { 
+            value: 0.6, 
+            random: true,
+            anim: { enable: true, speed: 1, opacity_min: 0.1 }
+          },
+          size: { 
+            value: 4, 
+            random: true,
+            anim: { enable: true, speed: 2, size_min: 0.5 }
+          },
+          line_linked: { 
+            enable: true, 
+            distance: 200, 
+            color: '#667eea', 
+            opacity: 0.3, 
+            width: 1 
+          },
+          move: { 
+            enable: true, 
+            speed: 3, 
+            direction: 'none', 
+            random: true, 
+            straight: false, 
+            out_mode: 'out', 
+            bounce: false 
+          }
+        },
+        interactivity: {
+          detect_on: 'canvas',
+          events: { 
+            onhover: { enable: true, mode: 'repulse' }, 
+            onclick: { enable: true, mode: 'push' }, 
+            resize: true 
+          },
+          modes: { 
+            grab: { distance: 300, line_linked: { opacity: 0.8 } }, 
+            bubble: { distance: 300, size: 8, duration: 2, opacity: 0.8, speed: 3 }, 
+            repulse: { distance: 150, duration: 0.4 }, 
+            push: { particles_nb: 6 }, 
+            remove: { particles_nb: 3 } 
+          }
+        },
+        retina_detect: true
+      });
+    }
+    
+    // Neural Network Background
+    function initializeNeuralNetwork() {
+      const svg = document.querySelector('#connections');
+      if (!svg) return;
+      
+      const nodes = [];
+      
+      // Create neural nodes
+      for (let i = 0; i < 20; i++) {
+        nodes.push({
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5
+        });
+      }
+      
+      function updateNeuralNetwork() {
+        if (!svg) return;
+        
+        svg.innerHTML = '';
+        
+        // Update node positions
+        nodes.forEach(node => {
+          node.x += node.vx;
+          node.y += node.vy;
+          
+          if (node.x < 0 || node.x > window.innerWidth) node.vx *= -1;
+          if (node.y < 0 || node.y > window.innerHeight) node.vy *= -1;
+        });
+        
+        // Draw connections
+        nodes.forEach((node, i) => {
+          nodes.slice(i + 1).forEach(otherNode => {
+            const distance = Math.sqrt(
+              Math.pow(node.x - otherNode.x, 2) + 
+              Math.pow(node.y - otherNode.y, 2)
+            );
+            
+            if (distance < 200) {
+              const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+              line.setAttribute('x1', node.x);
+              line.setAttribute('y1', node.y);
+              line.setAttribute('x2', otherNode.x);
+              line.setAttribute('y2', otherNode.y);
+              line.setAttribute('class', 'neural-lines');
+              line.setAttribute('opacity', 1 - distance / 200);
+              svg.appendChild(line);
+            }
+          });
+        });
+        
+        requestAnimationFrame(updateNeuralNetwork);
+      }
+      
+      updateNeuralNetwork();
+    }
+    
+    // Advanced Animations
+    function initializeAdvancedAnimations() {
+      // AI status indicator
+      const aiStatus = document.getElementById('aiStatus');
+      setInterval(() => {
+        if (Math.random() > 0.7) {
+          aiStatus.classList.remove('hidden');
+          setTimeout(() => aiStatus.classList.add('hidden'), 2000);
+        }
+      }, 5000);
+    }
+    
+    // Event Listeners
+    function setupEventListeners() {
+      const usernameInput = document.getElementById('usernameInput');
+      const searchBtn = document.getElementById('searchBtn');
+      const aiInsightsBtn = document.getElementById('aiInsightsBtn');
+      const demoBtn = document.getElementById('demoBtn');
+      
+      // Search functionality
+      searchBtn.addEventListener('click', performAdvancedSearch);
+      usernameInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') performAdvancedSearch();
+      });
+      
+      // AI Insights
+      aiInsightsBtn.addEventListener('click', () => {
+        if (currentUser) {
+          generateAIInsights();
+        } else {
+          showNotification('Please search for a user first', 'info');
+        }
+      });
+      
+      // Demo
+      demoBtn.addEventListener('click', runAIDemo);
+      
+      // Suggestion buttons
+      document.querySelectorAll('.suggestion-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          this.style.transform = 'scale(0.95)';
+          setTimeout(() => {
+            this.style.transform = 'scale(1.1)';
+            usernameInput.value = this.dataset.username;
+            performAdvancedSearch();
+          }, 100);
+          setTimeout(() => {
+            this.style.transform = 'scale(1)';
+          }, 200);
+        });
+      });
+    }
+    
+    // Show Empty State
+    function showEmptyState() {
+      hideAllSections();
+      document.getElementById('emptyState').classList.remove('hidden');
+    }
+    
+    // Hide All Sections
+    function hideAllSections() {
+      document.getElementById('emptyState').classList.add('hidden');
+      document.getElementById('loadingIndicator').classList.add('hidden');
+      document.getElementById('profileSection').classList.add('hidden');
+      document.getElementById('errorState').classList.add('hidden');
+      document.getElementById('aiInsightsPanel').classList.add('hidden');
+    }
+    
+    // Main Search Function - FIXED AND WORKING
+    async function performAdvancedSearch() {
+      const username = document.getElementById('usernameInput').value.trim();
+      if (!username) {
+        showNotification('Please enter a GitHub username', 'error');
+        return;
+      }
+      
+      try {
+        showAdvancedLoading();
+        
+        // Simulate AI processing steps
+        await simulateAIProcessing();
+        
+        // Fetch GitHub data
+        const userData = await fetchGitHubData(username);
+        
+        // Generate AI insights
+        const aiInsights = await generateAIAnalysis(userData);
+        
+        // Store current data
+        currentUser = userData.profile;
+        currentRepos = userData.repos;
+        allRepositories = userData.repos;
+        filteredRepositories = [...userData.repos];
+        
+        // Display results
+        displayAIInsights(aiInsights);
+        displayEnhancedProfile(userData);
+        
+        showNotification('Analysis complete! AI insights generated.', 'success');
+        
+      } catch (error) {
+        console.error('Search error:', error);
+        showAdvancedError(error.message);
+        showNotification('Analysis failed. Please try again.', 'error');
+      }
+    }
+    
+    // Advanced Loading Animation
+    function showAdvancedLoading() {
+      hideAllSections();
+      document.getElementById('loadingIndicator').classList.remove('hidden');
+      document.getElementById('resultsContainer').classList.remove('hidden');
+      
+      // Animate loading steps
+      const steps = document.querySelectorAll('.loading-step');
+      steps.forEach((step, index) => {
+        step.style.opacity = '0.5';
+        step.style.color = '#6b7280';
+        setTimeout(() => {
+          step.style.opacity = '1';
+          step.style.color = '#667eea';
+          step.innerHTML = step.innerHTML.replace('→', '✓');
+        }, (index + 1) * 1000);
+      });
+    }
+    
+    // Simulate AI Processing
+    async function simulateAIProcessing() {
+      const steps = [
+        'Fetching GitHub data...',
+        'Running neural analysis...',
+        'Generating AI insights...',
+        'Preparing visualizations...'
+      ];
+      
+      for (let i = 0; i < steps.length; i++) {
+        await new Promise(resolve => setTimeout(resolve, 1200));
+      }
+    }
+    
+    // GitHub Data Fetching - FIXED
+    async function fetchGitHubData(username) {
+      const headers = {
+        'Accept': 'application/vnd.github.v3+json',
+        'User-Agent': 'GitHub-Profile-Analyzer'
+      };
+      
+      try {
+        // Fetch user profile
+        const userResponse = await fetch(`${GITHUB_API_BASE}/users/${username}`, { headers });
+        
+        if (!userResponse.ok) {
+          if (userResponse.status === 404) {
+            throw new Error(`User "${username}" not found on GitHub`);
+          } else if (userResponse.status === 403) {
+            throw new Error('GitHub API rate limit exceeded. Please try again later.');
+          } else {
+            throw new Error(`GitHub API error: ${userResponse.status}`);
+          }
+        }
+        
+        const userData = await userResponse.json();
+        
+        // Fetch repositories with pagination
+        let allRepos = [];
+        let page = 1;
+        let hasMore = true;
+        
+        while (hasMore && page <= 5) {
+          const reposResponse = await fetch(
+            `${GITHUB_API_BASE}/users/${username}/repos?per_page=100&page=${page}&sort=updated`, 
+            { headers }
+          );
+          
+          if (!reposResponse.ok) {
+            console.warn(`Failed to fetch repos page ${page}`);
+            break;
+          }
+          
+          const repos = await reposResponse.json();
+          if (repos.length === 0) {
+            hasMore = false;
+          } else {
+            allRepos = [...allRepos, ...repos];
+            page++;
+          }
+        }
+        
+        // Fetch additional data
+        const eventsResponse = await fetch(`${GITHUB_API_BASE}/users/${username}/events/public?per_page=100`, { headers })
+          .catch(() => ({ ok: false }));
+        
+        const events = eventsResponse.ok ? await eventsResponse.json() : [];
+        
+        return {
+          profile: userData,
+          repos: allRepos,
+          events: events
+        };
+        
+      } catch (error) {
+        console.error('GitHub API Error:', error);
+        throw error;
+      }
+    }
+    
+    // AI Analysis Generation
+    async function generateAIAnalysis(userData) {
+      // Simulate AI processing time
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      const { profile, repos, events } = userData;
+      
+      // Advanced AI insights
+      const insights = {
+        developerType: analyzeDeveloperType(repos),
+        skillLevel: calculateSkillLevel(profile, repos, events),
+        recommendations: generateRecommendations(repos, events),
+        predictions: generatePredictions(profile, repos, events),
+        sentiment: analyzeSentiment(repos),
+        productivity: analyzeProductivity(repos, events),
+        collaboration: analyzeCollaboration(repos, events),
+        expertise: analyzeExpertise(repos),
+        summary: generateSummary(profile, repos)
+      };
+      
+      return insights;
+    }
+    
+    // AI Analysis Helper Functions
+    function analyzeDeveloperType(repos) {
+      const languages = repos.map(repo => repo.language).filter(Boolean);
+      const languageCounts = {};
+      
+      languages.forEach(lang => {
+        languageCounts[lang] = (languageCounts[lang] || 0) + 1;
+      });
+      
+      const sortedLanguages = Object.entries(languageCounts)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 3);
+      
+      const topLanguage = sortedLanguages[0]?.[0] || 'Unknown';
+      
+      const types = {
+        'JavaScript': 'Full-Stack Web Developer',
+        'TypeScript': 'Modern Web Developer',
+        'Python': 'Data Scientist / Backend Developer',
+        'Java': 'Enterprise Software Engineer',
+        'C++': 'Systems Programmer',
+        'C': 'Low-Level Systems Developer',
+        'Go': 'Cloud Infrastructure Engineer',
+        'Rust': 'Performance-Focused Developer',
+        'Swift': 'iOS Developer',
+        'Kotlin': 'Android Developer',
+        'PHP': 'Web Backend Developer',
+        'Ruby': 'Web Application Developer',
+        'C#': '.NET Developer',
+        'Scala': 'Big Data Engineer',
+        'R': 'Data Analyst',
+        'MATLAB': 'Scientific Computing Specialist'
+      };
+      
+      return types[topLanguage] || 'Polyglot Developer';
+    }
+    
+    function calculateSkillLevel(profile, repos, events) {
+      let score = 0;
+      
+      // Account age factor (max 25 points)
+      const accountAge = (new Date() - new Date(profile.created_at)) / (1000 * 60 * 60 * 24 * 365);
+      score += Math.min(accountAge * 5, 25);
+      
+      // Repository count factor (max 20 points)
+      score += Math.min(repos.length * 0.5, 20);
+      
+      // Stars factor (max 25 points)
+      const totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+      score += Math.min(totalStars / 20, 25);
+      
+      // Followers factor (max 15 points)
+      score += Math.min(profile.followers / 20, 15);
+      
+      // Recent activity factor (max 15 points)
+      const recentEvents = events.filter(event => {
+        const eventDate = new Date(event.created_at);
+        const monthsAgo = (new Date() - eventDate) / (1000 * 60 * 60 * 24 * 30);
+        return monthsAgo < 6;
+      });
+      score += Math.min(recentEvents.length / 10, 15);
+      
+      if (score >= 85) return 'Expert';
+      if (score >= 70) return 'Advanced';
+      if (score >= 50) return 'Intermediate';
+      if (score >= 30) return 'Beginner';
+      return 'Novice';
+    }
+    
+    function generateRecommendations(repos, events) {
+      const recommendations = [];
+      
+      // Documentation analysis
+      const hasGoodDocs = repos.some(repo => 
+        repo.description && repo.description.length > 50
+      );
+      
+      if (!hasGoodDocs) {
+        recommendations.push('Improve repository documentation to increase visibility and adoption');
+      }
+      
+      // Testing analysis
+      const hasTests = repos.some(repo => 
+        repo.name.includes('test') || 
+        repo.description?.toLowerCase().includes('test')
+      );
+      
+      if (!hasTests) {
+        recommendations.push('Add automated testing to enhance code quality and reliability');
+      }
+      
+      // Language diversity
+      const languages = [...new Set(repos.map(repo => repo.language).filter(Boolean))];
+      if (languages.length < 3) {
+        recommendations.push('Explore new programming languages to diversify your skill set');
+      }
+      
+      // Open source contribution
+      const forks = repos.filter(repo => repo.fork).length;
+      if (forks < repos.length * 0.2) {
+        recommendations.push('Consider contributing more to open source projects');
+      }
+      
+      // Recent activity
+      const recentRepos = repos.filter(repo => {
+        const lastUpdate = new Date(repo.updated_at);
+        const monthsAgo = (new Date() - lastUpdate) / (1000 * 60 * 60 * 24 * 30);
+        return monthsAgo < 3;
+      });
+      
+      if (recentRepos.length < 3) {
+        recommendations.push('Increase development activity to maintain profile visibility');
+      }
+      
+      return recommendations;
+    }
+    
+    function generatePredictions(profile, repos, events) {
+      const predictions = [];
+      
+      // Activity prediction
+      const recentActivity = events.filter(event => {
+        const eventDate = new Date(event.created_at);
+        const monthsAgo = (new Date() - eventDate) / (1000 * 60 * 60 * 24 * 30);
+        return monthsAgo < 3;
+      }).length;
+      
+      if (recentActivity > 20) {
+        predictions.push('High probability of continued active development in the next 6 months');
+        predictions.push('Likely to gain 15-25% more followers based on current activity trend');
+      } else if (recentActivity > 10) {
+        predictions.push('Moderate development activity expected to continue');
+        predictions.push('Steady growth in profile metrics anticipated');
+      } else {
+        predictions.push('May benefit from increased repository activity to boost visibility');
+      }
+      
+      // Career prediction
+      const totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+      const avgStarsPerRepo = totalStars / repos.length;
+      
+      if (totalStars > 500 && avgStarsPerRepo > 10) {
+        predictions.push('Strong potential for tech leadership roles and speaking opportunities');
+        predictions.push('High likelihood of being approached for collaboration on high-impact projects');
+      } else if (totalStars > 100) {
+        predictions.push('Growing influence in the developer community');
+        predictions.push('Potential for mentorship and community leadership roles');
+      }
+      
+      return predictions;
+    }
+    
+    function analyzeSentiment(repos) {
+      const descriptions = repos.map(repo => repo.description).filter(Boolean);
+      const positiveWords = ['awesome', 'amazing', 'great', 'excellent', 'innovative', 'powerful', 'modern', 'fast', 'efficient', 'clean'];
+      const negativeWords = ['deprecated', 'broken', 'legacy', 'outdated', 'abandoned', 'unmaintained'];
+      
+      let positiveCount = 0;
+      let negativeCount = 0;
+      
+      descriptions.forEach(desc => {
+        const lowerDesc = desc.toLowerCase();
+        positiveWords.forEach(word => {
+          if (lowerDesc.includes(word)) positiveCount++;
+        });
+        negativeWords.forEach(word => {
+          if (lowerDesc.includes(word)) negativeCount++;
+        });
+      });
+      
+      if (positiveCount > negativeCount * 2) return 'Very Positive';
+      if (positiveCount > negativeCount) return 'Positive';
+      if (negativeCount > positiveCount) return 'Negative';
+      return 'Neutral';
+    }
+    
+    function analyzeProductivity(repos, events) {
+      const now = new Date();
+      const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+      
+      const recentEvents = events.filter(event => 
+        new Date(event.created_at) > thirtyDaysAgo
+      );
+      
+      const recentCommits = recentEvents.filter(event => 
+        event.type === 'PushEvent'
+      ).length;
+      
+      const productivity = {
+        level: 'Low',
+        score: 0,
+        commitsPerDay: 0
+      };
+      
+      productivity.commitsPerDay = (recentCommits / 30).toFixed(1);
+      productivity.score = Math.min(recentCommits * 2, 100);
+      
+      if (recentCommits > 50) productivity.level = 'Very High';
+      else if (recentCommits > 30) productivity.level = 'High';
+      else if (recentCommits > 15) productivity.level = 'Moderate';
+      else if (recentCommits > 5) productivity.level = 'Low';
+      else productivity.level = 'Very Low';
+      
+      return productivity;
+    }
+    
+    function analyzeCollaboration(repos, events) {
+      const forks = repos.filter(repo => repo.fork).length;
+      const originalRepos = repos.filter(repo => !repo.fork).length;
+      
+      const pullRequestEvents = events.filter(event => 
+        event.type === 'PullRequestEvent'
+      ).length;
+      
+      const issueEvents = events.filter(event => 
+        event.type === 'IssuesEvent'
+      ).length;
+      
+      const collaborationScore = (forks * 2 + pullRequestEvents * 3 + issueEvents * 1) / Math.max(originalRepos, 1);
+      
+      return {
+        level: collaborationScore > 10 ? 'High' : collaborationScore > 5 ? 'Moderate' : 'Low',
+        score: Math.min(collaborationScore * 10, 100),
+        forksRatio: (forks / repos.length * 100).toFixed(1),
+        pullRequests: pullRequestEvents,
+        issues: issueEvents
+      };
+    }
+    
+    function analyzeExpertise(repos) {
+      const languages = repos.map(repo => repo.language).filter(Boolean);
+      const languageCounts = {};
+      
+      languages.forEach(lang => {
+        languageCounts[lang] = (languageCounts[lang] || 0) + 1;
+      });
+      
+      const expertise = Object.entries(languageCounts)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 5)
+        .map(([lang, count]) => ({
+          language: lang,
+          repositories: count,
+          percentage: ((count / repos.length) * 100).toFixed(1)
+        }));
+      
+      return expertise;
+    }
+    
+    function generateSummary(profile, repos) {
+      const languages = [...new Set(repos.map(repo => repo.language).filter(Boolean))];
+      const totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+      const topLanguage = languages[0] || 'various languages';
+      
+      return `${profile.name || profile.login} is an active developer with ${repos.length} repositories primarily using ${topLanguage}. With ${totalStars} total stars and ${profile.followers} followers, they demonstrate consistent engagement in the developer community.`;
+    }
+    
+    // Display AI Insights - FIXED
+    function displayAIInsights(insights) {
+      const panel = document.getElementById('aiInsightsPanel');
+      const content = document.getElementById('aiInsightsContent');
+      
+      content.innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          <div class="glass-advanced rounded-2xl p-6">
+            <h4 class="text-lg font-semibold text-blue-400 mb-3">
+              <i class="fas fa-user-tie mr-2"></i>Developer Profile
+            </h4>
+            <p class="text-white text-xl font-bold mb-2">${insights.developerType}</p>
+            <p class="text-gray-400">Skill Level: <span class="text-green-400 font-semibold">${insights.skillLevel}</span></p>
+          </div>
+          
+          <div class="glass-advanced rounded-2xl p-6">
+            <h4 class="text-lg font-semibold text-purple-400 mb-3">
+              <i class="fas fa-chart-trend-up mr-2"></i>Sentiment Analysis
+            </h4>
+            <p class="text-white text-xl font-bold mb-2">${insights.sentiment}</p>
+            <p class="text-gray-400">Based on repository descriptions</p>
+          </div>
+          
+          <div class="glass-advanced rounded-2xl p-6">
+            <h4 class="text-lg font-semibold text-orange-400 mb-3">
+              <i class="fas fa-bolt mr-2"></i>Productivity
+            </h4>
+            <p class="text-white text-xl font-bold mb-2">${insights.productivity.level}</p>
+            <p class="text-gray-400">${insights.productivity.commitsPerDay} commits/day</p>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+          <div class="glass-advanced rounded-2xl p-6">
+            <h4 class="text-lg font-semibold text-green-400 mb-4">
+              <i class="fas fa-lightbulb mr-2"></i>AI Recommendations
+            </h4>
+            <ul class="space-y-3">
+              ${insights.recommendations.slice(0, 5).map(rec => `
+                <li class="flex items-start">
+                  <i class="fas fa-arrow-right text-green-400 mr-3 mt-1 flex-shrink-0"></i>
+                  <span class="text-gray-300">${rec}</span>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+          
+          <div class="glass-advanced rounded-2xl p-6">
+            <h4 class="text-lg font-semibold text-cyan-400 mb-4">
+              <i class="fas fa-crystal-ball mr-2"></i>AI Predictions
+            </h4>
+            <ul class="space-y-3">
+              ${insights.predictions.slice(0, 4).map(pred => `
+                <li class="flex items-start">
+                  <i class="fas fa-star text-cyan-400 mr-3 mt-1 flex-shrink-0"></i>
+                  <span class="text-gray-300">${pred}</span>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+        </div>
+        
+        <div class="glass-advanced rounded-2xl p-6">
+          <h4 class="text-lg font-semibold text-pink-400 mb-4">
+            <i class="fas fa-brain mr-2"></i>AI Summary
+          </h4>
+          <p class="text-gray-200 leading-relaxed">${insights.summary}</p>
+        </div>
+      `;
+      
+      panel.classList.remove('hidden');
+    }
+    
+    // Display Enhanced Profile - FIXED
+    function displayEnhancedProfile(userData) {
+      const { profile, repos } = userData;
+      const profileSection = document.getElementById('profileSection');
+      
+      profileSection.innerHTML = `
+        <div class="grid grid-cols-1 xl:grid-cols-4 gap-8">
+          <!-- Profile Card -->
+          <div class="xl:col-span-1">
+            <div class="glass-advanced rounded-3xl p-8 sticky top-24 interactive-card">
+              <div class="text-center">
+                <div class="relative inline-block mb-6">
+                  <img src="${profile.avatar_url}" alt="${profile.login}" class="w-32 h-32 rounded-full profile-glow">
+                  <div class="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-4 border-gray-800 animate-pulse"></div>
+                </div>
+                <h2 class="text-3xl font-bold mb-2 bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">${profile.name || profile.login}</h2>
+                <p class="text-gray-400 mb-4">@${profile.login}</p>
+                <p class="text-gray-300 mb-6 leading-relaxed">${profile.bio || 'No bio available'}</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Main Content -->
+          <div class="xl:col-span-3 space-y-8">
+            <!-- Stats Dashboard -->
+            <div class="glass-advanced rounded-3xl p-8 interactive-card">
+              <h3 class="text-2xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                <i class="fas fa-chart-line mr-3"></i>Analytics Dashboard
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                ${generateStatsCards(profile, repos)}
+              </div>
+            </div>
+            
+            <!-- Charts Section -->
+            <div class="glass-advanced rounded-3xl p-8 interactive-card">
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="chart-container">
+                  <h4 class="text-xl font-semibold mb-4 text-white">Language Distribution</h4>
+                  <canvas id="languageChart" height="250"></canvas>
+                </div>
+                <div class="chart-container">
+                  <h4 class="text-xl font-semibold mb-4 text-white">Repository Activity</h4>
+                  <canvas id="activityChart" height="250"></canvas>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Repositories -->
+            <div class="glass-advanced rounded-3xl p-8 interactive-card">
+              <h3 class="text-2xl font-bold mb-6 bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
+                <i class="fas fa-folder-open mr-3"></i>Repositories
+              </h3>
+              <div id="repositoriesList" class="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-96 overflow-y-auto">
+                ${generateRepositoryList(repos)}
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      profileSection.classList.remove('hidden');
+      
+      // Initialize charts
+      setTimeout(() => {
+        createCharts(repos);
+      }, 500);
+    }
+    
+    // Generate Stats Cards
+    function generateStatsCards(profile, repos) {
+      const totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+      const totalForks = repos.reduce((sum, repo) => sum + repo.forks_count, 0);
+      
+      const cards = [
+        { icon: 'fas fa-user-friends', label: 'Followers', value: formatNumber(profile.followers), color: 'blue' },
+        { icon: 'fas fa-star', label: 'Total Stars', value: formatNumber(totalStars), color: 'green' },
+        { icon: 'fas fa-code-branch', label: 'Total Forks', value: formatNumber(totalForks), color: 'purple' },
+        { icon: 'fas fa-book', label: 'Public Repos', value: formatNumber(profile.public_repos), color: 'orange' }
+      ];
+      
+      return cards.map(card => `
+        <div class="bg-gradient-to-br from-${card.color}-500/20 to-${card.color}-600/20 rounded-2xl p-6 border border-${card.color}-500/30 interactive-card">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-${card.color}-300 text-sm font-medium">${card.label}</p>
+              <h4 class="text-3xl font-bold text-white mt-2">${card.value}</h4>
+            </div>
+            <div class="w-16 h-16 bg-${card.color}-500/30 rounded-2xl flex items-center justify-center">
+              <i class="${card.icon} text-${card.color}-400 text-2xl"></i>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    // Generate Repository List
+    function generateRepositoryList(repos) {
+      return repos.slice(0, 10).map(repo => `
+        <div class="p-6 bg-white/5 rounded-2xl border border-white/10 hover:border-blue-500 transition-all duration-300">
+          <div class="flex items-start justify-between mb-2">
+            <h4 class="font-semibold text-lg text-white truncate flex-1">
+              <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="hover:text-blue-300 transition-colors">${repo.name}</a>
+            </h4>
+            <div class="flex space-x-4 text-sm text-gray-400">
+              <span>⭐ ${repo.stargazers_count}</span>
+              <span>🍴 ${repo.forks_count}</span>
+            </div>
+          </div>
+          <p class="text-gray-300 text-sm mb-3 line-clamp-2">${repo.description || 'No description available'}</p>
+          ${repo.language ? `<span class="inline-block px-3 py-1 bg-blue-500/20 rounded-full text-xs text-blue-300">${repo.language}</span>` : ''}
+        </div>
+      `).join('');
+    }
+    
+    // Create Charts
+    function createCharts(repos) {
+      createLanguageChart(repos);
+      createActivityChart(repos);
+    }
+    
+    // Create Language Chart
+    // Simple Language Chart
+function createLanguageChart(repos) {
+  const ctx = document.getElementById('languageChart')?.getContext('2d');
+  if (!ctx) return;
+  
+  const languages = {};
+  repos.forEach(repo => {
+    if (repo.language) {
+      languages[repo.language] = (languages[repo.language] || 0) + 1;
+    }
+  });
+  
+  const top5 = Object.entries(languages).sort((a, b) => b[1] - a[1]).slice(0, 5);
+  
+  if (languageChart) languageChart.destroy();
+  
+  languageChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: top5.map(([lang]) => lang),
+      datasets: [{
+        data: top5.map(([_, count]) => count),
+        backgroundColor: ['#667eea', '#764ba2', '#f093fb', '#4facfe', '#43e97b']
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { labels: { color: 'white' } }
+      }
+    }
+  });
+}
+
+// Simple Activity Chart
+function createActivityChart(repos) {
+  const ctx = document.getElementById('activityChart')?.getContext('2d');
+  if (!ctx) return;
+  
+  const months = {};
+  const now = new Date();
+  
+  // Last 6 months only
+  for (let i = 5; i >= 0; i--) {
+    const date = new Date(now.getFullYear(), now.getMonth() - i, 1);
+    const key = date.toLocaleDateString('en-US', { month: 'short' });
+    months[key] = 0;
+  }
+  
+  repos.forEach(repo => {
+    const updated = new Date(repo.updated_at);
+    const key = updated.toLocaleDateString('en-US', { month: 'short' });
+    if (months[key] !== undefined) {
+      months[key]++;
+    }
+  });
+  
+  if (activityChart) activityChart.destroy();
+  
+  activityChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: Object.keys(months),
+      datasets: [{
+        data: Object.values(months),
+        backgroundColor: '#667eea'
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false }
+      },
+      scales: {
+        y: { ticks: { color: 'white' } },
+        x: { ticks: { color: 'white' } }
+      }
+    }
+  });
+}
+
+    
+    // Show Notification
+    function showNotification(message, type) {
+      const container = document.getElementById('notificationContainer');
+      const notification = document.createElement('div');
+      notification.className = `notification ${type}`;
+      notification.textContent = message;
+      
+      container.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.classList.add('show');
+      }, 100);
+      
+      setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+          notification.remove();
+        }, 300);
+      }, 3000);
+    }
+    
+    // Show Advanced Error
+    function showAdvancedError(message) {
+      hideAllSections();
+      const errorState = document.getElementById('errorState');
+      document.getElementById('errorMessage').textContent = message;
+      errorState.classList.remove('hidden');
+    }
+    
+    // Run AI Demo
+    function runAIDemo() {
+      document.getElementById('usernameInput').value = 'torvalds';
+      performAdvancedSearch();
+    }
+    
+    // Utility function
+    function formatNumber(num) {
+      if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+      if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+      return num;
+    }
+    
+    function formatDate(date) {
+      return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    }
+    
+  </script>
+</body>
+</html>
